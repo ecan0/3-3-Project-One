@@ -19,6 +19,24 @@ int main()
   }
 
 /**
+ * Gets menu choice 1 through maxChoice, inclusive
+ *
+ * @param maxChoice, maximum choice index, a number between 2 and 9, inclusive
+ * @return the first legal choice input, could be 1 through maxChoice, inclusive
+ */
+unsigned int getMenuChoice(unsigned int maxChoice) {
+  	int input;
+    
+    while(cin>>input) {
+        if (input >= 1 && input <= maxChoice)
+        {
+            break;
+        }
+    }
+    return input;
+}
+
+/**
  * Adds one hour
  */
 void addOneHour() {

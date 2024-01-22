@@ -18,6 +18,67 @@ int main()
     }
   }
 
+/**
+ * Adds one hour
+ */
+void addOneHour() {
+  int currentHour = getHour();
+    
+  if((0<=currentHour) && (currentHour<=22))
+  {
+      setHour(currentHour+1);
+  }
+  else
+  {
+      setHour(0);
+  }
+}
+
+/**
+ * Adds one minute
+ */
+void addOneMinute() {
+  int currentMinute = getMinute();
+    
+  if((0<=currentMinute) && (currentMinute<=58))
+  {
+      setMinute(currentMinute+1);
+  }
+  else
+  {
+      setMinute(0);
+      addOneHour();
+  }
+}
+
+/**
+ * Adds one second
+ */
+void addOneSecond() {
+    
+  int currentSecond = getSecond();
+    
+  if((0<=currentSecond) && (currentSecond<=58))
+  {
+      setSecond(currentSecond+1);
+  }
+  else
+  {
+      setSecond(0);
+      addOneMinute();
+  }
+}
+
+  string nCharString(size_t n, char c) 
+  {
+    return string(n, c);
+  }
+
+  string formatTime24(unsigned int h, unsigned int m, unsigned int s)
+  {
+    return formattedTime = twoDigitString(h) + ":" + twoDigitString(m) + ":" + twoDigitString(s);
+  }
+
   string formatTime12(unsigned int h, unsigned int m, unsigned int s)
   {
     // variable to delegate if it's AM or PM
@@ -39,8 +100,8 @@ int main()
       if (h != 12)
         h = h - 12;
     }
-    string formattedString = twoDigitString(h) + ":" + twoDigitString(m) + ":" + twoDigitString(s) + timeSuffix;
-    return formattedString; // replace this placeholder with return of your formatted string
+    string formattedTime = twoDigitString(h) + ":" + twoDigitString(m) + ":" + twoDigitString(s) + timeSuffix;
+    return formattedTime; // replace this placeholder with return of your formatted string
   }
 
   string twoDigitString(unsigned int n)

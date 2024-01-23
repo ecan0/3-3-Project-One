@@ -4,10 +4,10 @@
 
 using namespace std;
 
-int main()
-{
+  // print functions to screen
   void mainMenu()
   {
+    cout << "Please enter a time." << endl;
     int userInput;
     while (getMenuChoice(userInput))
     {
@@ -15,46 +15,46 @@ int main()
       {
       case 1:
         addOneHour();
+        displayClocks(10, 10, 10);
         break;
       case 2:
         addOneMinute();
+        displayClocks(20, 20, 20);
         break;
       case 3:
         addOneSecond();
+        displayClocks(30, 30, 30);
         break;
       case 4:
         return;
       default:
+        cout << "Invalid entry." << endl;
         continue;
       }
     }
   }
 
-  void printMenu(char *strings[], unsigned int numStrings, int width)
+  void printMenu()
   {
-
-    cout << nCharString(width, '*') << endl;
-    for (int i = 0; i < numStrings; ++i)
-    {
-      string givenString = strings[i];
-      cout << "* ";
-      cout << i + 1 << " - ";
-      cout << givenString;
-      int spaceLength = width - givenString.length() - 7;
-      cout << nCharString(spaceLength, ' ') << "*" << endl;
-      if (givenString != strings[numStrings - 1])
-      {
-        cout << endl;
-      }
-    }
+    cout << nCharString(26, '*') << endl;
+    cout << "* 1 - Add One Hour        *" << endl;
+    cout << "* 2 - Add One Minute      *" << endl;
+    cout << "* 3 - Add One Second      *" << endl;
+    cout << "* 4 - Exit Program        *" << endl;
     cout << nCharString(width, '*') << endl;
   }
-  /**
-   * Gets menu choice 1 through maxChoice, inclusive
-   *
-   * @param maxChoice, maximum choice index, a number between 2 and 9, inclusive
-   * @return the first legal choice input, could be 1 through maxChoice, inclusive
-   */
+
+  void displayClocks(unsigned int h, unsigned int m, unsigned int s)
+  {
+    cout << nCharString(27, '*') << "   " << nCharString(27, '*') << endl;
+    cout << "*" << "      " << "12-HOUR CLOCK" << "      " << "*" << endl;
+    cout << "*" << "      " << "24-HOUR CLOCK" << "      " << "*" << endl;
+    cout << endl;
+    cout << "*" << "      " << formatTime12(h,m,s) << "      " << "*" << endl;
+    cout << "*" << "      " << formatTime24(h,m,s) << "      " << "*" << endl;
+    cout << nCharString(27, '*') << "   " << nCharString(27, '*') << endl;
+  }
+
   unsigned int getMenuChoice(unsigned int maxChoice)
   {
     int input;
@@ -69,9 +69,7 @@ int main()
     return input;
   }
 
-  /**
-   * Adds one hour
-   */
+  // add functions
   void addOneHour()
   {
     int currentHour = getHour();
@@ -86,9 +84,6 @@ int main()
     }
   }
 
-  /**
-   * Adds one minute
-   */
   void addOneMinute()
   {
     int currentMinute = getMinute();
@@ -104,9 +99,6 @@ int main()
     }
   }
 
-  /**
-   * Adds one second
-   */
   void addOneSecond()
   {
 
@@ -123,6 +115,9 @@ int main()
     }
   }
 
+  // set functions
+
+  // format functions
   string nCharString(size_t n, char c)
   {
     return string(static_cast<int>(n), c);
@@ -155,7 +150,7 @@ int main()
         h = h - 12;
     }
     string formattedTime = twoDigitString(h) + ":" + twoDigitString(m) + ":" + twoDigitString(s) + timeSuffix;
-    return formattedTime; // replace this placeholder with return of your formatted string
+    return formattedTime;
   }
 
   string twoDigitString(unsigned int n)
@@ -168,13 +163,9 @@ int main()
     return convertedOutput;
   }
 
-void displayClocks(unsigned int h, unsigned int m, unsigned int s) {
-    cout << nCharString(27, '*') << "   " << nCharString(27, '*') << endl;
-    cout << "*" << "      " << "12-HOUR CLOCK" << "      " << "*" << endl;
-    cout << "*" << "      " << "24-HOUR CLOCK" << "      " << "*" << endl;
-    cout << endl;
-    cout << "*" << "      " << formatTime12(h,m,s) << "      " << "*" << endl;
-    cout << "*" << "      " << formatTime24(h,m,s) << "      " << "*" << endl;
-    cout << nCharString(27, '*') << "   " << nCharString(27, '*') << endl;
-}
+int main() 
+{
+  printMenu();
+  mainMenu();
+  return 0;
 }

@@ -1,9 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include "print.h"
-#include "add.h"
-#include "displayFormat.h"
+#include "functions.h"
 
 using namespace std;
 

@@ -1,4 +1,7 @@
-#include "print.h"
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include "functions.h"
 
 using namespace std;
 
@@ -39,7 +42,7 @@ using namespace std;
     cout << "* 2 - Add One Minute      *" << endl;
     cout << "* 3 - Add One Second      *" << endl;
     cout << "* 4 - Exit Program        *" << endl;
-    cout << nCharString(width, '*') << endl;
+    cout << nCharString(26, '*') << endl;
   }
 
   void displayClocks(unsigned int h, unsigned int m, unsigned int s)

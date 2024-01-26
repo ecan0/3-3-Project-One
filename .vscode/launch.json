@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/EricC/OneDrive/Documents/CS-210",
-      "program": "c:/Users/EricC/OneDrive/Documents/CS-210/build/Debug/outDebug",
+      "cwd": "c:/Users/A15/Documents/Projects/3-3-Project-One",
+      "program": "c:/Users/A15/Documents/Projects/3-3-Project-One/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

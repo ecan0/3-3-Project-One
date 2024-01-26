@@ -3,13 +3,15 @@
 
 #include <string>
 
+using namespace std;
+
 std::string nCharString(size_t n, char c);
 
-std::string formatTime24(unsigned int h, unsigned int m, unsigned int s);
+std::string formatTime24(int h, int m, int s);
 
-std::string formatTime12(unsigned int h, unsigned int m, unsigned int s);
+std::string formatTime12() int h, int m, int s);
 
-std::string twoDigitString(unsigned int n);
+std::string twoDigitString(int n);
 
 void addOneHour();
 
@@ -21,8 +23,8 @@ void mainMenu();
 
 void printMenu();
 
-void displayClocks(unsigned int h, unsigned int m, unsigned int s);
+void displayClocks(int h, int m, int s);
 
-unsigned int getMenuChoice(unsigned int maxChoice);
+int getMenuChoice(int maxChoice);
 
 #endif

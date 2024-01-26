@@ -115,13 +115,16 @@ string formatTime12(int h, int m, int s)
 
 void displayClocks(int h, int m, int s)
 {
-  cout << nCharString(27, '*') << "   " << nCharString(27, '*') << endl;
-  cout << "*" << "      " << "12-HOUR CLOCK" << "      " << "*";
-  cout << "*" << "      " << "24-HOUR CLOCK" << "      " << "*";
+  const int totalWidth = 26; // Adjust the total width as needed
+  const int clockWidth = 10; // Adjust the width for each clock section
+
+  cout << nCharString(totalWidth, '*') << "   " << nCharString(totalWidth, '*') << endl;
+  cout << "*" << setw(clockWidth + (totalWidth - clockWidth) / 2) << "12-HOUR CLOCK" << setw(clockWidth - (totalWidth - clockWidth) / 2) << "*";
+  cout << "*" << setw(clockWidth + (totalWidth - clockWidth) / 2) << "24-HOUR CLOCK" << setw(clockWidth - (totalWidth - clockWidth) / 2) << "*";
   cout << endl;
-  cout << "*" << "      " << formatTime12(h, m, s) << "      " << "*";
-  cout << "*" << "      " << formatTime24(h, m, s) << "      " << "*" << endl;
-  cout << nCharString(27, '*') << "   " << nCharString(27, '*') << endl;
+  cout << "*" << setw(clockWidth + (totalWidth - clockWidth) / 2) << formatTime12(h, m, s) << setw(clockWidth - (totalWidth - clockWidth) / 2) << "*";
+  cout << "*" << setw(clockWidth + (totalWidth - clockWidth) / 2) << formatTime24(h, m, s) << setw(clockWidth - (totalWidth - clockWidth) / 2) << "*" << endl;
+  cout << nCharString(totalWidth, '*') << "   " << nCharString(totalWidth, '*') << endl;
 }
 
 void getUserTime()

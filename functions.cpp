@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <limits> // Include for numeric_limits
 #include "functions.h"
 
 using namespace std;
@@ -8,6 +9,12 @@ using namespace std;
 int hours;
 int minutes;
 int seconds;
+
+int getHours() { return hours; }
+
+int getMinutes() { return minutes; }
+
+int getSeconds() { return seconds; }
 
 string nCharString(size_t n, char c)
 {
@@ -42,7 +49,7 @@ void addOneHour()
 {
   if ((0 <= hours) && (hours <= 22))
   {
-    hours = hours+1;
+    hours = hours + 1;
   }
   else
   {
@@ -52,13 +59,13 @@ void addOneHour()
 
 void addOneMinute()
 {
-  if ((0 <= minute) && (minute <= 58))
+  if ((0 <= minutes) && (minutes <= 58))
   {
-    minute = minute+1;
+    minutes = minutes + 1;
   }
   else
   {
-    minute = 0;
+    minutes = 0;
     addOneHour();
   }
 }
@@ -67,11 +74,11 @@ void addOneSecond()
 {
   if ((0 <= seconds) && (seconds <= 58))
   {
-    seconds = seconds+1;
+    seconds = seconds + 1;
   }
   else
   {
-    seconds=0;
+    seconds = 0;
     addOneMinute();
   }
 }
@@ -109,23 +116,11 @@ string formatTime12(int h, int m, int s)
 void displayClocks(int h, int m, int s)
 {
   cout << nCharString(27, '*') << "   " << nCharString(27, '*') << endl;
-  cout << "*"
-       << "      "
-       << "12-HOUR CLOCK"
-       << "      "
-       << "*" << endl;
-  cout << "*"
-       << "      "
-       << "24-HOUR CLOCK"
-       << "      "
-       << "*" << endl;
+  cout << "*" << "      " << "12-HOUR CLOCK" << "      " << "*";
+  cout << "*" << "      " << "24-HOUR CLOCK" << "      " << "*";
   cout << endl;
-  cout << "*"
-       << "      " << formatTime12(h, m, s) << "      "
-       << "*" << endl;
-  cout << "*"
-       << "      " << formatTime24(h, m, s) << "      "
-       << "*" << endl;
+  cout << "*" << "      " << formatTime12(h, m, s) << "      " << "*";
+  cout << "*" << "      " << formatTime24(h, m, s) << "      " << "*" << endl;
   cout << nCharString(27, '*') << "   " << nCharString(27, '*') << endl;
 }
 
@@ -137,7 +132,7 @@ void getUserTime()
   cout << "Hours (between 0-24 please)";
   while (cin >> input)
   {
-    if ((input >= 0 && input <= 24))
+    if ((input >= 0 && input <= 23))
     {
       hours = input;
       break;
@@ -176,46 +171,15 @@ void getUserTime()
       continue;
     }
   }
-  displayClocks(hours,minutes,seconds);
+  displayClocks(hours, minutes, seconds);
 }
 
 void printMenu()
 {
   cout << nCharString(26, '*') << endl;
-  cout << "* 1 - Add One Hour        *" << endl;
-  cout << "* 2 - Add One Minute      *" << endl;
-  cout << "* 3 - Add One Second      *" << endl;
-  cout << "* 4 - Exit Program        *" << endl;
+  cout << "* 1 - Add One Hour       *" << endl;
+  cout << "* 2 - Add One Minute     *" << endl;
+  cout << "* 3 - Add One Second     *" << endl;
+  cout << "* 4 - Exit Program       *" << endl;
   cout << nCharString(26, '*') << endl;
-}
-
-void mainMenu()
-{
-  cout << "Congratulations! You have entered a valid time. Above are your times in 12 and 24 hours." << endl;
-  cout << "Please update the time according to the choices below." << endl;
-  printMenu();
-  int userInput;
-  while (getMenuChoice(userInput))
-  {
-    switch (userInput)
-    {
-    case 1:
-      addOneHour();
-      displayClocks(hours, minutes, seconds);
-      break;
-    case 2:
-      addOneMinute();
-      displayClocks(hours, minutes, seconds);
-      break;
-    case 3:
-      addOneSecond();
-      displayClocks(hours, minutes, seconds);
-      break;
-    case 4:
-      return;
-    default:
-      cout << "Invalid entry." << endl;
-      continue;
-    }
-  }
 }

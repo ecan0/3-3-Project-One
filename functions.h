@@ -19,6 +19,12 @@ void addOneMinute();
 
 void addOneSecond();
 
+int getHours();
+
+int getMinutes();
+
+int getSeconds();
+
 void mainMenu();
 
 void printMenu();

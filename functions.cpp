@@ -5,6 +5,10 @@
 
 using namespace std;
 
+int hours;
+int minutes;
+int seconds;
+
 string nCharString(size_t n, char c)
 {
   return string(static_cast<int>(n), c);
@@ -36,47 +40,40 @@ int getMenuChoice(int maxChoice)
 
 void addOneHour()
 {
-  //int currentHour = getHour();
-
-  // if ((0 <= currentHour) && (currentHour <= 22))
-  // {
-  //   //setHour(currentHour + 1);
-  // }
-  // else
-  // {
-  //   //setHour(0);
-  // }
+  if ((0 <= hours) && (hours <= 22))
+  {
+    hours = hours+1;
+  }
+  else
+  {
+    hours = 0;
+  }
 }
 
 void addOneMinute()
 {
-  //int currentMinute = getMinute();
-
-  // if ((0 <= currentMinute) && (currentMinute <= 58))
-  // {
-  //   //setMinute(currentMinute + 1);
-  // }
-  // else
-  // {
-  //   //setMinute(0);
-  //   addOneHour();
-  // }
+  if ((0 <= minute) && (minute <= 58))
+  {
+    minute = minute+1;
+  }
+  else
+  {
+    minute = 0;
+    addOneHour();
+  }
 }
 
 void addOneSecond()
 {
-
-  //int currentSecond = getSecond();
-
-  // if ((0 <= currentSecond) && (currentSecond <= 58))
-  // {
-  //   //setSecond(currentSecond + 1);
-  // }
-  // else
-  // {
-  //   //setSecond(0);
-  //   addOneMinute();
-  // }
+  if ((0 <= seconds) && (seconds <= 58))
+  {
+    seconds = seconds+1;
+  }
+  else
+  {
+    seconds=0;
+    addOneMinute();
+  }
 }
 
 string formatTime24(int h, int m, int s)
@@ -132,33 +129,54 @@ void displayClocks(int h, int m, int s)
   cout << nCharString(27, '*') << "   " << nCharString(27, '*') << endl;
 }
 
-void mainMenu()
+void getUserTime()
 {
-  cout << "Please enter a time." << endl;
-  int userInput;
-  while (getMenuChoice(userInput))
+  int input;
+  cout << "Welcome to the Chada Tech clock!" << endl;
+  cout << "Enter your times!" << endl;
+  cout << "Hours (between 0-24 please)";
+  while (cin >> input)
   {
-    switch (userInput)
+    if ((input >= 0 && input <= 24))
     {
-    case 1:
-      addOneHour();
-      displayClocks(10, 10, 10);
+      hours = input;
       break;
-    case 2:
-      addOneMinute();
-      displayClocks(20, 20, 20);
-      break;
-    case 3:
-      addOneSecond();
-      displayClocks(30, 30, 30);
-      break;
-    case 4:
-      return;
-    default:
-      cout << "Invalid entry." << endl;
+    }
+    else
+    {
+      cout << "That seems to be incorrect, try that again between 0 and 24.";
       continue;
     }
   }
+  cout << "Minutes: (between 0-59 please) ";
+  while (cin >> input)
+  {
+    if ((input >= 0 && input <= 59))
+    {
+      minutes = input;
+      break;
+    }
+    else
+    {
+      cout << "That seems to be incorrect, try that again between 0 and 59.";
+      continue;
+    }
+  }
+  cout << "Seconds (between 0-59 please): ";
+  while (cin >> input)
+  {
+    if ((input >= 0 && input <= 59))
+    {
+      seconds = input;
+      break;
+    }
+    else
+    {
+      cout << "That seems to be incorrect, try that again between 0 and 59.";
+      continue;
+    }
+  }
+  displayClocks(hours,minutes,seconds);
 }
 
 void printMenu()
@@ -169,4 +187,35 @@ void printMenu()
   cout << "* 3 - Add One Second      *" << endl;
   cout << "* 4 - Exit Program        *" << endl;
   cout << nCharString(26, '*') << endl;
+}
+
+void mainMenu()
+{
+  cout << "Congratulations! You have entered a valid time. Above are your times in 12 and 24 hours." << endl;
+  cout << "Please update the time according to the choices below." << endl;
+  printMenu();
+  int userInput;
+  while (getMenuChoice(userInput))
+  {
+    switch (userInput)
+    {
+    case 1:
+      addOneHour();
+      displayClocks(hours, minutes, seconds);
+      break;
+    case 2:
+      addOneMinute();
+      displayClocks(hours, minutes, seconds);
+      break;
+    case 3:
+      addOneSecond();
+      displayClocks(hours, minutes, seconds);
+      break;
+    case 4:
+      return;
+    default:
+      cout << "Invalid entry." << endl;
+      continue;
+    }
+  }
 }

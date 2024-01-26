@@ -5,9 +5,14 @@
 
 using namespace std;
 
+void getUserTime();
+void printMenu();
+void mainMenu();
+
 int main() 
 {
-  printMenu();
+  getUserTime();
   mainMenu();
+  printMenu();
   return 0;
 }

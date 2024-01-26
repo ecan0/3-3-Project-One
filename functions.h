@@ -1,5 +1,5 @@
-#ifdef FUNCTION_H // guards
-#define FUNCTION_H
+#ifdef FUNCTIONS_H // guards
+#define FUNCTIONS_H
 
 #include <string>
 
@@ -26,5 +26,7 @@ void printMenu();
 void displayClocks(int h, int m, int s);
 
 int getMenuChoice(int maxChoice);
+
+int getUserTime();
 
 #endif

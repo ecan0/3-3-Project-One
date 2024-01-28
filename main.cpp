@@ -16,7 +16,7 @@ int getMinutes();
 int getSeconds();
 void displayClocks(int h, int m, int s);
 
-int main() 
+int main()
 {
   getUserTime();
   cout << "Congratulations! You have entered a valid time. Above are your times in 12 and 24 hours." << endl;
@@ -26,34 +26,33 @@ int main()
   {
     cout << "Please update the time according to the choices below." << endl;
     printMenu();
-    if (getMenuChoice(userInput))
-    {
-      switch (userInput)
-      {
-      case 1:
-        addOneHour();
-        break;
-      case 2:
-        addOneMinute();
-        break;
-      case 3:
-        addOneSecond();
-        break;
-      case 4:
-        cout << "Exiting program.";
-        return 0;
-      default:
-        cout << "Invalid entry." << endl;
-        break;
-      }
 
-      displayClocks(getHours(), getMinutes(), getSeconds());
-    }
-    else
+    // Corrected usage of getMenuChoice
+    userInput = getMenuChoice(4); // Assuming there are four choices
+
+    switch (userInput)
     {
-      cout << "Invalid choice. Please enter a valid menu option." << endl;
+    case 1:
+      addOneHour();
+      displayClocks(getHours(), getMinutes(), getSeconds());
+      break;
+    case 2:
+      addOneMinute();
+      displayClocks(getHours(), getMinutes(), getSeconds());
+      break;
+    case 3:
+      addOneSecond();
+      displayClocks(getHours(), getMinutes(), getSeconds());
+      break;
+    case 4:
+      cout << "Exiting program.";
+      return 0;
+    default:
+      cout << "Invalid entry." << endl;
+      break;
     }
+
+    
 
   } while (true);
-  return 0;
 }

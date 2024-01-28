@@ -1,27 +1,30 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <limits> // Include for numeric_limits
+#include <limits> // Include for numeric_limits.
 #include "functions.h"
 
 using namespace std;
 
+//variables to control our time. these will be updated by the functions
 int hours;
 int minutes;
 int seconds;
 
+//accessor functions for our times.
 int getHours() { return hours; }
 
 int getMinutes() { return minutes; }
 
 int getSeconds() { return seconds; }
 
+//returns a number of chars as specified by n.
 string nCharString(size_t n, char c)
 {
   return string(static_cast<size_t>(n), c);
 }
 
-// print functions to screen
+//Appends 0 to time value if it's between 0-9 for formatting purposes.
 string twoDigitString(int n)
 {
   string convertedOutput = to_string(n);
@@ -32,10 +35,12 @@ string twoDigitString(int n)
   return convertedOutput;
 }
 
+//Takes user input value of 1-4 and checks to ensure it's an integer value.
 int getMenuChoice(int maxChoice)
 {
   int input;
 
+  //loops until recieves correct input
   while (true)
   {
     cout << endl
@@ -65,6 +70,7 @@ int getMenuChoice(int maxChoice)
   return input;
 }
 
+//Check if input is between 0 and 22. Edge case of 23 will reset to 00 hours if needed to add.
 void addOneHour()
 {
   if ((0 <= hours) && (hours <= 22))
@@ -77,6 +83,7 @@ void addOneHour()
   }
 }
 
+//Check if input is between 0 and 58. Edge case of 59 will reset to 00 hours if needed to add.
 void addOneMinute()
 {
   if ((0 <= minutes) && (minutes <= 58))
@@ -90,6 +97,7 @@ void addOneMinute()
   }
 }
 
+//Check if input is between 0 and 58. Edge case of 59 will reset to 00 hours if needed to add.
 void addOneSecond()
 {
   if ((0 <= seconds) && (seconds <= 58))
@@ -103,11 +111,13 @@ void addOneSecond()
   }
 }
 
+//Display 24 hour as string formatted in HH:MM:SS.
 string formatTime24(int h, int m, int s)
 {
   return twoDigitString(h) + ":" + twoDigitString(m) + ":" + twoDigitString(s);
 }
 
+//Display 12 hour as string formatted in HH:MM:SS A M/P M.
 string formatTime12(int h, int m, int s)
 {
   // variable to delegate if it's AM or PM
@@ -133,6 +143,10 @@ string formatTime12(int h, int m, int s)
   return formattedTime;
 }
 
+
+//Displays both times in 12/24 hr format simultaneously.
+//Compared to the Sense solution, I think mine is simpler and more readible. 
+//It also omits unnecessary calculations since everything is a fixed length anyway.
 void displayClocks(int h, int m, int s)
 {
   cout<< endl << "***************************  ***************************" << endl;
@@ -141,6 +155,7 @@ void displayClocks(int h, int m, int s)
 	cout<< "***************************  ***************************" << endl;
 }
 
+//Entry prompt to get the initial time from the user.
 void getUserTime()
 {
   int input;
@@ -149,8 +164,11 @@ void getUserTime()
        << "Enter your times!" << endl;
   cout << endl
        << "Hours (between 0-24 please): ";
+
+  //Loops for input and determines hours, minutes, and seconds.
   while (cin >> input)
   {
+    //Checks for hour inputs between 0 and 23.
     if ((input >= 0 && input <= 23))
     {
       hours = input;
@@ -164,9 +182,11 @@ void getUserTime()
     }
   }
 
+  //Clear input buffer for next input.
   cin.clear();
   cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+  //Checks for minute inputs between 0 and 59.
   cout << endl
        << "Minutes (between 0-59 please): ";
   while (cin >> input)
@@ -183,10 +203,11 @@ void getUserTime()
       continue;
     }
   }
-
+  //Clear input buffer for next input.
   cin.clear();
   cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
+  
+  //Checks for second inputs between 0 and 59.
   cout << endl
        << "Seconds (between 0-59 please): ";
   while (cin >> input)
@@ -203,13 +224,15 @@ void getUserTime()
       continue;
     }
   }
-
+  //Clear input buffer for next input.
   cin.clear();
   cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+  //After all inputs are logged and loops end, display time.
   displayClocks(hours, minutes, seconds);
 }
 
+//Print the user options for adding time amounts and exit.
 void printMenu()
 {
   cout << endl

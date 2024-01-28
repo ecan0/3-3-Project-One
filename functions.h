@@ -25,8 +25,6 @@ int getMinutes();
 
 int getSeconds();
 
-void mainMenu();
-
 void printMenu();
 
 void displayClocks(int h, int m, int s);

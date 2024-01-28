@@ -18,7 +18,7 @@ int getSeconds() { return seconds; }
 
 string nCharString(size_t n, char c)
 {
-    return string(static_cast<size_t>(n), c);
+  return string(static_cast<size_t>(n), c);
 }
 
 // print functions to screen
@@ -38,7 +38,8 @@ int getMenuChoice(int maxChoice)
 
   while (true)
   {
-    cout << "Enter your choice (1-" << maxChoice << "): ";
+    cout << endl
+         << "Enter your choice (1-" << maxChoice << "): ";
 
     // Check if the input is an integer
     if (cin >> input)
@@ -50,13 +51,13 @@ int getMenuChoice(int maxChoice)
       }
       else
       {
-        cout << "Invalid choice. Please enter a number between 1 and " << maxChoice << "." << endl;
+        cout << endl << "Invalid choice. Please enter a number between 1 and " << maxChoice << "." << endl;
       }
     }
     else
     {
       // Handle non-integer input
-      cout << "Invalid input. Please enter a valid integer." << endl;
+      cout << endl << "Invalid input. Please enter a valid integer." << endl;
       cin.clear();                                         // Clear the error state
       cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
     }
@@ -134,23 +135,20 @@ string formatTime12(int h, int m, int s)
 
 void displayClocks(int h, int m, int s)
 {
-  const int totalWidth = 29; // Adjust the total width as needed
-  const int clockWidth = 14; // Adjust the width for each clock section
-
-  cout << nCharString(totalWidth, '*') << "   " << nCharString(totalWidth, '*') << endl;
-  cout << "*  12-HOUR CLOCK    *" << nCharString(totalWidth - 18, ' ') << "*";
-  cout << "*  24-HOUR CLOCK    *" << nCharString(totalWidth - 18, ' ') << "*" << endl;
-  cout << "*    " << formatTime12(h, m, s) << "    *" << nCharString(totalWidth - clockWidth - 5, ' ') << "*";
-  cout << "*    " << formatTime24(h, m, s) << "    *" << nCharString(totalWidth - clockWidth - 5, ' ') << "*" << endl;
-  cout << nCharString(totalWidth, '*') << "   " << nCharString(totalWidth, '*') << endl;
+  cout<< endl << "***************************  ***************************" << endl;
+	cout<< "*       12-Hour Clock     *  *       24-Hour Clock     *" << endl;
+	cout<< "*       " << formatTime12(h,m,s) << "      *  *       " << formatTime24(h,m,s) << "          *" << endl;
+	cout<< "***************************  ***************************" << endl;
 }
 
 void getUserTime()
 {
   int input;
   cout << "Welcome to the Chada Tech clock!" << endl;
-  cout << "Enter your times!" << endl;
-  cout << "Hours (between 0-24 please): ";
+  cout << endl
+       << "Enter your times!" << endl;
+  cout << endl
+       << "Hours (between 0-24 please): ";
   while (cin >> input)
   {
     if ((input >= 0 && input <= 23))
@@ -160,7 +158,8 @@ void getUserTime()
     }
     else
     {
-      cout << "That seems to be incorrect, try that again between 0 and 24." << endl;
+      cout << endl
+           << "That seems to be incorrect, try that again between 0 and 24." << endl;
       continue;
     }
   }
@@ -168,7 +167,8 @@ void getUserTime()
   cin.clear();
   cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-  cout << "Minutes (between 0-59 please): ";
+  cout << endl
+       << "Minutes (between 0-59 please): ";
   while (cin >> input)
   {
     if ((input >= 0 && input <= 59))
@@ -178,7 +178,8 @@ void getUserTime()
     }
     else
     {
-      cout << "That seems to be incorrect, try that again between 0 and 59." << endl;
+      cout << endl
+           << "That seems to be incorrect, try that again between 0 and 59." << endl;
       continue;
     }
   }
@@ -186,7 +187,8 @@ void getUserTime()
   cin.clear();
   cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-  cout << "Seconds (between 0-59 please): ";
+  cout << endl
+       << "Seconds (between 0-59 please): ";
   while (cin >> input)
   {
     if ((input >= 0 && input <= 59))
@@ -196,7 +198,8 @@ void getUserTime()
     }
     else
     {
-      cout << "That seems to be incorrect, try that again between 0 and 59." << endl;
+      cout << endl
+           << "That seems to be incorrect, try that again between 0 and 59." << endl;
       continue;
     }
   }
@@ -209,7 +212,8 @@ void getUserTime()
 
 void printMenu()
 {
-  cout << nCharString(26, '*') << endl;
+  cout << endl
+       << nCharString(26, '*') << endl;
   cout << "* 1 - Add One Hour       *" << endl;
   cout << "* 2 - Add One Minute     *" << endl;
   cout << "* 3 - Add One Second     *" << endl;

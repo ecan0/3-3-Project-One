@@ -24,7 +24,7 @@ int main()
 
   do
   {
-    cout << "Please update the time according to the choices below." << endl;
+    cout << endl << "Please update the time according to the choices below." << endl;
     printMenu();
 
     // Corrected usage of getMenuChoice
